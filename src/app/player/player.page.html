@@ -1,0 +1,81 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>     
+    <ion-title>
+      Dom Quixote
+    </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button>
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar color="dark">
+    <ion-segment scrollable value="heart">
+      <ion-segment-button value="home">
+        <ion-label>Narrador</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="heart">
+        <ion-label>Dom Quixote</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="pin">
+        <ion-label>Sancho Pança</ion-label>
+      </ion-segment-button>      
+    </ion-segment>
+  </ion-toolbar>  
+</ion-header>
+
+<ion-card>    
+  <ion-card-content [style.font-size.%]="150 - (3*text.length - 300)/20">
+    {{text}} 
+  </ion-card-content>
+</ion-card>
+
+<ion-content [fullscreen]="true">  
+  <ion-list>
+    <ion-item button *ngFor="let track of playlist">
+      <ion-avatar slot="start">
+        <img src="./assets/imgs/avatar.png">
+      </ion-avatar>
+      <ion-label [color]="track == activeTrack ? 'success' : 'light'" (click)="start(track)">
+        {{track.name}}
+      </ion-label>
+      <ion-icon button name="heart" slot="end" [color]="track.liked ? 'success' : ''" (click)="track.liked = !track.liked"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer *ngIf="activeTrack">
+  <ion-toolbar color="dark">
+    <ion-row class="bg-color-step-100">
+      <ion-col size="12" class="ion-text-center" style="padding-top: 15px; padding-bottom: 0;">
+        {{activeTrack.name}}
+      </ion-col>
+      <ion-col size="12" style="padding-top: 0; padding-bottom: 0;">
+        <ion-range #range [(ngModel)]="progress" max="100" color="success" (touchend)="seek()" (mouseup)="seek()" style="padding-top: 0; padding-bottom: 0;"></ion-range>
+      </ion-col>
+      <ion-col size="12" class="ion-text-center" style="padding-top: 0;">
+        <ion-button fill="clear" (click)="prev()" color="light">
+          <ion-icon slot="icon-only" name="play-skip-back"></ion-icon>
+        </ion-button>
+
+        <ion-button fill="clear" (click)="togglePlayer(false)" *ngIf="!isPlaying" color="light">
+          <ion-icon slot="icon-only" name="play"></ion-icon>
+        </ion-button>
+
+        <ion-button fill="clear" (click)="togglePlayer(true)" *ngIf="isPlaying" color="light">
+          <ion-icon slot="icon-only" name="pause"></ion-icon>
+        </ion-button>
+        
+        <ion-button fill="clear" (click)="next()" color="light">
+          <ion-icon slot="icon-only" name="play-skip-forward"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

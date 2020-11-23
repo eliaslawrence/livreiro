@@ -1,0 +1,36 @@
+<ion-app>
+  <ion-menu type="overlay">
+    <ion-header>
+      <ion-toolbar>
+        <ion-item fill="solid" color="dark" lines="none">
+          <ion-icon slot="start" name="person-circle"></ion-icon>
+          <ion-label>
+            <h2>{{user ? user.name : 'User'}}</h2>
+            <p>{{user ? user.email : 'email'}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+          <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" color="dark">
+            <ion-icon slot="start" [name]="p.icon"></ion-icon>
+            <ion-label>
+              {{p.title}}
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+    <ion-footer>
+      <ion-item button (click)="logout()" lines="none" color="dark">
+        <ion-icon slot="start" name="exit"></ion-icon>
+        <ion-label>
+          Logout
+        </ion-label>
+      </ion-item> 
+    </ion-footer>
+  </ion-menu>
+  <ion-router-outlet main></ion-router-outlet>
+</ion-app>

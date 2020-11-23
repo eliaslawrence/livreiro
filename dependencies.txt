@@ -1,0 +1,6 @@
+npm i howler
+npm install chart.js --save
+
+ionic cordova plugin add cordova-plugin-media
+npm install @ionic-native/media
+npm install @ionic-native/file

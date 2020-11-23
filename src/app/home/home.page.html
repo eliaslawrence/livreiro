@@ -1,0 +1,40 @@
+<!-- <ion-header [translucent]="true"> -->
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons> 
+    <ion-title>
+      Livros
+    </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button>
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon slot="icon-only" name="funnel-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<!-- <ion-content [fullscreen]="true"> -->
+<ion-content>
+  <ion-card *ngFor="let item of items; let i = index" (click)="openPage(item)" color="dark">    
+    <div class="pricetag-button" style="position: relative">
+      <img src="{{item.path}}"/>
+      <ion-fab vertical="top" horizontal="start" size="small" slot="fixed" *ngIf="item.competitionOpen">
+        <ion-fab-button color="success">
+          <ion-icon name="mic-outline" color="dark"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </div>
+    <!-- <ion-card-header>
+      <ion-card-subtitle>Destination</ion-card-subtitle>
+      <ion-card-title>{{item.title}}</ion-card-title>
+    </ion-card-header> -->
+    <!-- <ion-card-content>
+      Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.
+    </ion-card-content> -->
+  </ion-card>  
+</ion-content>

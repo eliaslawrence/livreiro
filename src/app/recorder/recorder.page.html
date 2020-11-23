@@ -1,0 +1,111 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">   
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons> 
+    <ion-title>
+      Dom Casmurro
+    </ion-title>
+    <!-- <ion-buttons slot="primary">
+      <ion-button (click)="saveMarkers()">
+        Fim     
+        <ion-icon slot="icon-only" name="push-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>  
+  <ion-toolbar color="dark">
+    <ion-segment scrollable value="home">
+      <ion-segment-button value="home">
+        <ion-label>Narrador</ion-label>
+      </ion-segment-button>
+      <!-- <ion-segment-button value="heart">
+        <ion-label>Dom Quixote</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="pin">
+        <ion-label>Sancho Pança</ion-label>
+      </ion-segment-button>       -->
+    </ion-segment>
+  </ion-toolbar>   
+</ion-header>
+
+<ion-card>    
+  <div style="width: 100%; height: 100%; position: absolute;">
+    <div id="pointer" style="width: 50%;height: 100%;z-index: 2;margin: 0;position: relative;float: left;"  (click)="prev()"></div>
+    <div id="pointer" style="width: 50%;height: 100%;z-index: 2;margin: 0;position: relative;float: right;" (click)="next()"></div>    
+  </div>
+  <ion-card-content [style.font-size.%]="150 - (3*sentences[index].length - 300)/20">
+    {{sentences[index]}} 
+  </ion-card-content>
+</ion-card>
+
+<ion-content [fullscreen]="true">  
+
+  <!-- <div class="parentContainer">      
+    <div style="width: 100%; height: 100%; position: absolute;pointer-events: none; z-index: 1;">
+      <div id="pointer" style="width: 2px; height: 100%; background-color: var(--ion-color-danger); margin: auto;"></div>
+    </div>
+    <div class="container" (touchend)="seek()" (mouseup)="seek()" (touchstart)="touching = true" (mousedown)="touching = true"> 
+      <div class="item" [style.height.%]="100" [style.width.px]="0"></div>   
+      <div class="item" *ngFor="let amp of amplitudes; last as isLast; first as isFirst" [style.height.px]="amp*50" [style.width.px]="barWidth" [style.marginLeft]="isFirst ? windowWidth/2+'px' : '0px'" [style.marginRight]="isLast ? windowWidth/2+'px' : marginWidth + 'px'"></div>
+    </div>
+  </div> -->
+
+  <ion-grid style="margin-top: 10%; color: white; font-size: 2em;">
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <!-- 00:02:06.650 -->
+        {{formattedTime}}
+      </ion-col>      
+    </ion-row>
+  </ion-grid>  
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="dark">
+    <ion-row>
+      <!-- <ion-col size="12" class="ion-text-center" style="padding-top: 15px; padding-bottom: 0;">
+        {{activeTrack.name}}
+      </ion-col>-->
+      <ion-col size="12" style="padding-top: 0; padding-bottom: 0;">
+        <ion-range #range [(ngModel)]="progress" max="100" color="success" (touchend)="seek()" (mouseup)="seek()" (touchstart)="touching = true" (mousedown)="touching = true" style="padding-top: 0; padding-bottom: 0;"></ion-range>
+      </ion-col>
+      <ion-col size="12" class="ion-text-center" style="padding: 0;">
+        <!-- <ion-button fill="clear" (click)="prev()" color="light">
+          <ion-icon slot="icon-only" name="play"></ion-icon>
+        </ion-button> -->
+
+        <!-- <ion-button fill="clear" (click)="test()" *ngIf="!isPlaying" color="light">
+          <ion-icon slot="icon-only" name="play"></ion-icon>
+        </ion-button> -->
+
+        <ion-button fill="clear" (click)="togglePlayer(false)" *ngIf="!isPlaying" color="light">
+          <ion-icon slot="icon-only" name="play"></ion-icon>
+        </ion-button>
+
+        <ion-button fill="clear" (click)="togglePlayer(true)" *ngIf="isPlaying" color="light">
+          <ion-icon slot="icon-only" name="pause"></ion-icon>
+        </ion-button>
+
+        <ion-button fill="solid" shape="round" color="success" id="mic-button" (click)="saveMarkers()">
+          <div id="end-label">Fim</div>
+        </ion-button>
+
+        <!-- <ion-button fill="solid" shape="round" color="success" id="mic-button">
+          <ion-icon slot="icon-only" name="mic" color="dark"></ion-icon>
+        </ion-button> -->
+
+        <!-- <ion-button fill="solid" shape="round" color="success" id="mic-button" *ngIf="isRecording" (click)="pauseRecord()">
+          <ion-icon slot="icon-only" name="pause" color="dark"></ion-icon>
+        </ion-button> -->
+
+        <!-- <ion-button fill="clear" (click)="togglePlayer(true)" *ngIf="isPlaying" color="light">
+          <ion-icon slot="icon-only" name="pause"></ion-icon>
+        </ion-button>-->
+        
+        <ion-button fill="clear" (click)="stop()" color="light">
+          <ion-icon slot="icon-only" name="stop"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

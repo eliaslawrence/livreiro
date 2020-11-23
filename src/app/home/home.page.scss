@@ -1,0 +1,85 @@
+// #container {
+//   text-align: center;
+
+//   position: absolute;
+//   left: 0;
+//   right: 0;
+//   top: 50%;
+//   transform: translateY(-50%);
+// }
+
+// #container strong {
+//   font-size: 20px;
+//   line-height: 26px;
+// }
+
+// #container p {
+//   font-size: 16px;
+//   line-height: 22px;
+
+//   color: #8c8c8c;
+
+//   margin: 0;
+// }
+
+// #container a {
+//   text-decoration: none;
+// }
+
+ion-content, ion-list, ion-item {
+  --background: var(--ion-color-dark);
+  --ion-background-color: var(--ion-color-dark);
+}
+
+//START: ion-card
+@media (max-width: 500px) {
+  ion-card{
+    width: calc(50% - 10px) !important;
+  }
+}
+
+@media (max-width: 650px) and (min-width: 500px){
+  ion-card{
+    width: calc(33% - 10px) !important;
+  }
+}
+
+@media (max-width: 900px) and (min-width: 650px){
+  ion-card{
+    width: calc(25% - 10px) !important;
+  }
+}
+
+@media (max-width: 1200px) and (min-width: 900px){
+  ion-card{
+    width: calc(20% - 10px) !important;
+  }
+}
+
+@media (min-width: 1200px){
+  ion-card{
+    width: calc(14% - 10px) !important;
+  }
+}
+
+ion-card {
+  margin: 5px !important;
+  // margin: auto !important;
+  // width: calc(50% - 10px) !important;
+  // width: 175px !important;
+  // max-width: calc(50% - 10px) !important;
+  display: inline-grid !important;
+  // box-shadow: none !important;
+}
+//END: ion-card
+
+.pricetag-button{
+  ion-fab-button{
+    width: 2rem;
+    height: 2rem;
+  }
+
+  ion-icon{
+    font-size: 1.2rem;
+  }
+}
